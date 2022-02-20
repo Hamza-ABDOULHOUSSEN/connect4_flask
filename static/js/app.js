@@ -2,6 +2,7 @@
 const allCells = document.querySelectorAll('.cell:not(.row-top)');
 const topCells = document.querySelectorAll('.cell.row-top');
 const resetButton = document.querySelector('.reset');
+const resetAIButton = document.querySelector('.resetWithAI');
 const statusSpan = document.querySelector('.status');
 
 // columns
@@ -272,6 +273,19 @@ for (const row of rows) {
 }
 
 resetButton.addEventListener('click', () => {
+  for (const row of rows) {
+    for (const cell of row) {
+      cell.classList.remove('red');
+      cell.classList.remove('yellow');
+      cell.classList.remove('win');
+    }
+  }
+  gameIsLive = true;
+  yellowIsNext = true;
+  statusSpan.textContent = '';
+});
+
+resetAIButton.addEventListener('click', () => {
   for (const row of rows) {
     for (const cell of row) {
       cell.classList.remove('red');
