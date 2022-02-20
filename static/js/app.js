@@ -30,6 +30,7 @@ const rows = [row0, row1, row2, row3, row4, row5, topRow];
 // variables
 let gameIsLive = true;
 let yellowIsNext = true;
+let playWithAI = false;
 
 
 // Functions
@@ -222,7 +223,16 @@ const checkStatusOfGame = (cell) => {
   statusSpan.textContent = "Game is a tie!";
 };
 
-
+// Functions link with AI
+const getAIColIndex = () => {
+  let ColIndex = 0;
+  let cell = getFirstOpenCellForColumn(ColIndex);
+  while (!cell) {
+    ColIndex++
+    cell = getFirstOpenCellForColumn(ColIndex);
+  }
+  return cell;
+}
 
 // Event Handlers
 const handleCellMouseOver = (e) => {
@@ -258,6 +268,20 @@ const handleCellClick = (e) => {
     const topCell = topCells[colIndex];
     topCell.classList.add(yellowIsNext ? 'yellow' : 'red');
   }
+
+  if (playWithAI) {
+    const openCell = getAIColIndex();
+
+    openCell.classList.add(yellowIsNext ? 'yellow' : 'red');
+    checkStatusOfGame(openCell);
+
+    yellowIsNext = !yellowIsNext;
+    clearColorFromTop(colIndex);
+    if (gameIsLive) {
+      const topCell = topCells[colIndex];
+      topCell.classList.add(yellowIsNext ? 'yellow' : 'red');
+    }
+  }
 };
 
 
@@ -282,6 +306,7 @@ resetButton.addEventListener('click', () => {
   }
   gameIsLive = true;
   yellowIsNext = true;
+  playWithAI = false;
   statusSpan.textContent = '';
 });
 
@@ -295,5 +320,6 @@ resetAIButton.addEventListener('click', () => {
   }
   gameIsLive = true;
   yellowIsNext = true;
+  playWithAI = true;
   statusSpan.textContent = '';
 });
