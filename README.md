@@ -6,6 +6,7 @@
     - [1.2.1. install the requirements](#121-install-the-requirements)
     - [1.2.2. run the website](#122-run-the-website)
   - [1.3. Improvements](#13-improvements)
+  - [1.4. Preview](#14-preview)
 
 ## 1.1. Introduction
 
@@ -32,3 +33,6 @@ flask run
 ## 1.3. Improvements
 The part to play with computer is not efficient now. The idea is to create a AI made with the Minimax program.  
 
+## 1.4. Preview
+
+<img src="images/home.png" alt="drawing" width="700"/>
